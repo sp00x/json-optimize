@@ -21,6 +21,8 @@ Example test file:
 * JsonOptimize'd: 2 161 369
 * JsonOptimize'd then MsgPack'ed: 1 472 453
 
+(See other test example at the bottom of this page)
+
 ## Usage
 
 ### Node.js
@@ -43,13 +45,13 @@ var origDoc = jo.unpack(optDoc);
 ### JavaScript
 
 ```html
-<script type="text/javascript" src="bower_components/build/json-optimize.min.js"></script>
+<script type="text/javascript" src="bower_components/json-optimize/build/json-optimize.min.js"></script>
 <script type="text/javascript">
 var jo = new JsonOptimize();
 var bar = ..;
-var foo = jo.pack(bar);
+var opt = jo.pack(bar);
+var orig = jo.unpack(opt);
 </script>
-</tt>
 ```
 
 ## API
