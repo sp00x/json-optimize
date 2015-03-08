@@ -1,0 +1,30 @@
+{
+  "name": "json-optimize",
+  "version": "0.1.0",
+  "homepage": "https://github.com/sp00x/json-optimize",
+  "authors": [
+    "Rune Bjerke <github.public@green.spoox.org>"
+  ],
+  "description": "Optimize objects for smaller JSON footprint by temporarily replacing key names with shorter ones",
+  "main": "dist/json-optimize.min.js",
+  "keywords": [
+    "json",
+    "optimize",
+    "compress"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "error-*.json",
+    "tests/*",
+    "src/*",
+    "Gruntfile.js",
+    "package.json"
+  ],
+  "repository": {
+    "url": "git://github.com/sp00x/json-optimize.git",
+    "type": "git"
+  }
+}
