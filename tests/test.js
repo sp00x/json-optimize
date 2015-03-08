@@ -44,13 +44,19 @@ var deep2 = [
   { t: 'Object of nonequality stuff', v: { foo: base2Bare, bar: [ base2Bare ] }, assert: false }
 ];
 
-var tests = [].concat(base, deep, deep2);
+var tests = [].concat(base, base2, deep, deep2);
 
-if (typeof require === 'function')
+if (isScript)
 {
-    var fs = require('fs');
-    if (fs.existsSync('test.json'))
-      tests.push({ t: 'Big JSON sample', v: JSON.parse(fs.readFileSync("test.json")) });
+  var fn = "tests/test-mtg-data.json";
+  var fs = require('fs');
+  if (fs.existsSync(fn))
+  {
+    console.log("reading " + fn + " ..")
+    tests.push({ t: 'Big JSON sample', v: JSON.parse(fs.readFileSync(fn)) });
+  }
+  else
+    console.warn(fn + " not found, run 'npm run-script test-size' to download");
 }
 
 function len(o) { return o ? o.length : NaN; }
@@ -59,6 +65,8 @@ function test(test, i)
 {
   try
   {
+    console.info("\n" + test.t + "..");
+
     var before = test.v;
 
     var jsonIn = JSON.stringify(before);
@@ -67,30 +75,32 @@ function test(test, i)
     var after = jo.unpack(frozen);
     var jsonOut = JSON.stringify(after);
 
-    console.info(test.t); // + ":       " + len(jsonIn) + " -> " + len(jsonTemp) + " (" + Math.round(100 * len(jsonTemp) / len(jsonIn)) + "%)");
+    //console.info(test.t + ":       " + len(jsonIn) + " -> " + len(jsonTemp) + " (" + Math.round(100 * len(jsonTemp) / len(jsonIn)) + "%)");
 
     var assertError = false;
 
     if (test.assert && assert)
     {
-      assert.deepEqual(before, after, 'MISMATCH!');
+      assert.deepEqual('MISMATCH!');
     }
 
     if (jsonIn != jsonOut)
     {
       throw new Error("MISMATCH!");
     }
+
+    console.info("  OK");
   }
   catch (e)
   {
-    console.error(e, e.stackTrace);
+    console.error('  ' + e, e.stackTrace);
 
     if (isScript)
     {
       var fs = require('fs');
-      fs.writeFileSync('error-before-' + i + '.json', JSON.stringify(before, null, '  '));
-      fs.writeFileSync('error-json-optimize-' + i + '.json', JSON.stringify(frozen, null, '  '));
-      fs.writeFileSync('error-after-' + i + '.json', JSON.stringify(after, null, '  '));
+      fs.writeFileSync('tests/error-before-' + i + '.json', JSON.stringify(before, null, '  '));
+      fs.writeFileSync('tests/error-json-optimize-' + i + '.json', JSON.stringify(frozen, null, '  '));
+      fs.writeFileSync('tests/error-after-' + i + '.json', JSON.stringify(after, null, '  '));
     }
 
     console.dir(before);

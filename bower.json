@@ -24,7 +24,7 @@
     "package.json"
   ],
   "repository": {
-    "url": "git://github.com/sp00x/json-optimize.git",
+    "url": "https://github.com/sp00x/json-optimize.git",
     "type": "git"
   }
 }

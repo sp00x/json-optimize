@@ -15,7 +15,11 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/sp00x/json-optimize.git"
+    "url": "https://github.com/sp00x/json-optimize.git"
+  },
+  "homepage": "https://github.com/sp00x/json-optimize",
+  "bugs": {
+    "url" : "https://github.com/sp00x/json-optimize/issues"
   },
   "scripts": {
     "test": "node tests/test.js",
