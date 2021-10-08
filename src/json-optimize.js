@@ -198,7 +198,7 @@
 		{
 			// transfer the array to a hash->originalPropertyName dictionary
 			var dict = {};
-			for (i = 0; obj[0].length > i; i++)	dict[hash(i)] = obj[0][i];
+			for (var i = 0; obj[0].length > i; i++)	dict[hash(i)] = obj[0][i];
 
 			// reverse the process of pack()
 			return traverseRebuild(obj[1], dict);
